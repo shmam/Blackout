@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+
 .App {
   text-align: center;
 }
@@ -29,16 +31,21 @@
 
 .Create{
   border: 1px solid black;
-   
-  width: 90%;
+  display: inline-block;
+  text-align: left;
+  width: 360px;
   margin: auto; 
 
 }
 
 .Word{
+  font-family: 'Arvo', serif;
   padding: 5px; 
   margin: 0px;
-  font-size: 20px;
+  font-size: 30px;
   display: inline-block;
+  text-align: right;
+  margin-right: 0;
+  
 }
 

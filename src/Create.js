@@ -1,24 +1,41 @@
 import React, { Component } from 'react';
 import './App.css';
 
+var words = ["To","be","or","not","to", "be","that","is","the","question","also","this","is","some","more","words","that","I", "am","entering"]
+
 class Create extends Component{ 
+    constructor(props){
+        super(props)
+        this.state = {
+            poem: {words}, 
+            color: 'white',
+        }
+    }
     
-    getInitialState(){
-        return {active: null}
+    removeWord(index){
+        this.setState({poem: words.splice(index,1)})
+        console.log(words)
     }
 
-    blacken(position){
+    changeColor(){
+        console.log("Beep")
+        this.setState({color:'black'})
 
     }
     
     render(){ 
         return(
             <div className = "Create">
-                <p> Make a new poem bitch </p>
-                <Word value="this" 
-                    style = {{background: this.blacken(0)}}
-                    onClick = {() => this.toggle(0)}
-                />
+                {words.map(function(word,index){
+                    return <Word 
+                        key={index}
+                        value={word}
+                        setStyle={{
+                            backgroundColor: this.state.color,
+                        }}
+                        onClick = {() => this.changeColor()}
+                    />
+                })}             
             </div>
         );
 

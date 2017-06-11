@@ -7,6 +7,9 @@ class App extends Component {
     return (
       <div className = "App">
         <Header />
+        
+        <br /><br />
+
         <Create />
       </div>
     );
@@ -20,7 +23,7 @@ class Header extends Component {
         <table>
           <tr>
             <td> <Title /> </td>
-            <td> <h3> Username: skhfoiqh </h3> </td>
+            <td> <h3> Username: skhf </h3> </td>
           </tr>
         </table>
       </div>
