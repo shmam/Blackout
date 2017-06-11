@@ -1,41 +1,47 @@
 import React, { Component } from 'react';
 import './App.css';
 
-var words = ["To","be","or","not","to", "be","that","is","the","question","also","this","is","some","more","words","that","I", "am","entering"]
 
 class Create extends Component{ 
     constructor(props){
         super(props)
+        const arr = this.props.words
         this.state = {
-            poem: {words}, 
-            color: 'white',
+            status: arr,
+            post: arr,
         }
     }
     
-    removeWord(index){
-        this.setState({poem: words.splice(index,1)})
-        console.log(words)
+    removeWord(i,value){
+        console.log("removed " + value);
+        var u = this.state.post.indexOf(value)
+        this.setState({post: this.state.post.splice(u+1,1)})
+        console.log(this.state.post)
     }
 
-    changeColor(){
-        console.log("Beep")
-        this.setState({color:'black'})
+    addWord(i,value){
+        console.log("added " + value + " at index " + i);
+}
 
-    }
-    
     render(){ 
+
+        //Binding the functions used in this parent component that will be passed to the child as props 
+        var removeWord = this.removeWord.bind(this);
+        var addWord = this.addWord.bind(this);
         return(
             <div className = "Create">
-                {words.map(function(word,index){
+                
+ 
+                {this.props.words.map(function(word,i){
                     return <Word 
-                        key={index}
+                        keyVal={i}
+                        key={i}
                         value={word}
-                        setStyle={{
-                            backgroundColor: this.state.color,
-                        }}
-                        onClick = {() => this.changeColor()}
+                        remove={removeWord}
+                        add={addWord}
                     />
-                })}             
+                })}  
+
             </div>
         );
 
@@ -44,9 +50,27 @@ class Create extends Component{
 
 class Word extends Component{
     
+    constructor(props){
+        super(props);
+        this.state = {background: 'white'}
+    }
+
+    handleClick(){
+        if(this.state.background === 'white'){
+            this.props.remove(this.props.keyVal,this.props.value)
+            this.setState({background: 'black'})
+            
+        }
+        else{
+            this.props.add(this.props.keyVal,this.props.value)
+            this.setState({background: 'white'})
+        }
+    }
+
     render(){
         return(
-            <div className = "Word">
+            <div onClick = {() => this.handleClick()} className = "Word"
+                style={{background: this.state.background}}>
                 {this.props.value}
             </div>
         );

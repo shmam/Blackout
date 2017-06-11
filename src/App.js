@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Create from './Create.js'
 import './App.css';
 
+var array = ["To","be","or","not","to", "be","that","is","the","question","also","this","is","some","more","words","that","I", "am","entering"]
+
+
 class App extends Component {
   render() {
     return (
@@ -10,7 +13,7 @@ class App extends Component {
         
         <br /><br />
 
-        <Create />
+        <Create words={array}/>
       </div>
     );
   }
