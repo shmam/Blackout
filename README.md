@@ -1,6 +1,7 @@
 # blackout
 A new way to share poetry. 
 
+Created using create-react-app
 ## Goals 
 [ ]: Create the front end functionality 
 

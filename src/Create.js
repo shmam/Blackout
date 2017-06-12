@@ -7,32 +7,62 @@ class Create extends Component{
         super(props)
         const arr = this.props.words
         this.state = {
+            display: arr,
             status: arr,
-            post: arr,
+            post: [],
+            removed: [],
         }
     }
     
     removeWord(i,value){
         console.log("removed " + value);
-        var u = this.state.post.indexOf(value)
-        this.setState({post: this.state.post.splice(u+1,1)})
-        console.log(this.state.post)
+
+        var foo = this.state.removed;
+        foo.push(value);
+        this.setState({
+            removed: foo
+        })
+        console.log(this.state.removed)
+       
+        
     }
 
     addWord(i,value){
         console.log("added " + value + " at index " + i);
-}
+        var foo = this.state.removed;
+        foo.splice(foo.indexOf(value),1);
+        this.setState({
+            removed: foo
+        })
+        console.log(this.state.removed)
+
+    }
+
+    generatePost(){
+        var thingsToRemove = this.state.removed
+        var newPost = this.state.status
+        for(var i=0; i < thingsToRemove.length; i++){
+            newPost.splice(newPost.indexOf(thingsToRemove[i]),1)
+        }
+        //pushes new post up to app layer to render
+        this.props.post(newPost);
+    }
+
+    reloadComponent(){ 
+        this.props.reload()
+    }
 
     render(){ 
 
         //Binding the functions used in this parent component that will be passed to the child as props 
         var removeWord = this.removeWord.bind(this);
         var addWord = this.addWord.bind(this);
+
         return(
             <div className = "Create">
                 
- 
-                {this.props.words.map(function(word,i){
+                
+                {this.state.display.map(function(word,i){
                     return <Word 
                         keyVal={i}
                         key={i}
@@ -40,8 +70,10 @@ class Create extends Component{
                         remove={removeWord}
                         add={addWord}
                     />
-                })}  
-
+                })} 
+                <br/>
+                <button onClick={() => this.generatePost()}> post </button> 
+                <button onClick={() => this.reloadComponent()}> reload </button>
             </div>
         );
 
