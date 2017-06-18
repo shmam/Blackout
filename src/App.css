@@ -1,46 +1,47 @@
-@import url('https://fonts.googleapis.com/css?family=Arvo');
+@import url('https://fonts.googleapis.com/css?family=Heebo:300,500,900');
 
 .App {
   text-align: center;
 }
 
 .Title{ 
+  font-family: 'Heebo', sans-serif;
   font-size: 40px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  
   
 }
 
-.Header{ 
-  text-align: center;
-  margin: auto; 
-  width: 90%; 
-  border: 1px solid black;
+p{
+  font-style: italic;
+  
 }
 
-.Header table{
-  width: 100%;
-  padding: 0px; 
-}
 
-.Header td{
-  padding: 0px;
-}
-
-.Header tr{
-  padding: 0px;
-}
 
 .Create{
   border-top: 5px solid black;
   display: inline-block;
   text-align: left;
-  width: 360px;
+  width: 80%;
   margin: auto; 
 
 }
 
+.Controller{
+  width: 100%; 
+  padding: 0px; 
+}
+
+.Controller button{
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
 .Word{
-  font-family: 'Arvo', serif;
-  padding: 5px; 
+  font-family: 'Heebo', sans-serif;
+  padding: 3px; 
   margin: 0px;
   font-size: 30px;
   display: inline-block;
@@ -55,7 +56,8 @@ button{
   color: white;
   background-color: black;
   border: 0px solid black;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 button:focus{

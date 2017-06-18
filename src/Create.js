@@ -5,10 +5,7 @@ import './App.css';
 class Create extends Component{ 
     constructor(props){
         super(props)
-        const arr = this.props.words
         this.state = {
-            display: arr,
-            status: arr,
             post: [],
             removed: [],
         }
@@ -22,7 +19,7 @@ class Create extends Component{
         this.setState({
             removed: foo
         })
-        console.log(this.state.removed)
+        //console.log(this.state.removed)
        
         
     }
@@ -34,23 +31,21 @@ class Create extends Component{
         this.setState({
             removed: foo
         })
-        console.log(this.state.removed)
+        //console.log(this.state.removed)
 
     }
 
     generatePost(){
         var thingsToRemove = this.state.removed
-        var newPost = this.state.status
+        var newPost = this.props.words.split(" ")
         for(var i=0; i < thingsToRemove.length; i++){
             newPost.splice(newPost.indexOf(thingsToRemove[i]),1)
         }
         //pushes new post up to app layer to render
-        this.props.post(newPost);
+        //console.log(newPost.join(" "))
+        this.props.post(newPost.join(" "));
     }
 
-    reloadComponent(){ 
-        this.props.reload()
-    }
 
     render(){ 
 
@@ -58,11 +53,13 @@ class Create extends Component{
         var removeWord = this.removeWord.bind(this);
         var addWord = this.addWord.bind(this);
 
+        var array = this.props.words.split(" ")
+
         return(
             <div className = "Create">
                 
                 
-                {this.state.display.map(function(word,i){
+                {array.map(function(word,i){
                     return <Word 
                         keyVal={i}
                         key={i}
@@ -73,7 +70,7 @@ class Create extends Component{
                 })} 
                 <br/>
                 <button onClick={() => this.generatePost()}> post </button> 
-                <button onClick={() => this.reloadComponent()}> reload </button>
+                
             </div>
         );
 
