@@ -38,12 +38,15 @@ class Create extends Component{
     generatePost(){
         var thingsToRemove = this.state.removed
         var newPost = this.props.words.split(" ")
-        for(var i=0; i < thingsToRemove.length; i++){
-            newPost.splice(newPost.indexOf(thingsToRemove[i]),1)
+        if(thingsToRemove.length !== newPost.length){
+            
+            for(var i=0; i < thingsToRemove.length; i++){
+                newPost.splice(newPost.indexOf(thingsToRemove[i]),1)
+            }
+            //pushes new post up to app layer to render
+            //console.log(newPost.join(" "))
+            this.props.post(newPost.join(" "));
         }
-        //pushes new post up to app layer to render
-        //console.log(newPost.join(" "))
-        this.props.post(newPost.join(" "));
     }
 
 
@@ -69,7 +72,7 @@ class Create extends Component{
                     />
                 })} 
                 <br/>
-                <button onClick={() => this.generatePost()}> post </button> 
+                <button onClick={() => this.generatePost()}> post. </button> 
                 
             </div>
         );
