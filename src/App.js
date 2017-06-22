@@ -3,13 +3,14 @@ import Create from './Create.js'
 import Post from './Post.js'
 import './App.css';
 
+const colors = ['#ffb3b3','#9fbedf','#b3b3cc','#9fdf9f','#ffcc80','#cccc99','#9cb9ff','#6a8e81','#8e5b5b','#c8c1a5','#c6b5a7','#adc0b4','	#9db1bd','#bda5bc',	'#a19cb5','#f7a889','#f9d0a4','#f0debc','#f2e9af','#a4b28f','#786a94','#6c6389'];
 
 
 class App extends Component {
 
 
   render() {
-    const quote = "Welcome random blank user ok to to blackout wow  "
+    const quote = "To be or not to be that is the beloved question that is being asked, but I can find no answer"
     return (
       <div className = "App">
         <Title />  
@@ -55,14 +56,14 @@ class Controller extends Component{
   render(){
     var renderPost = this.renderPost.bind(this);
     var renderCreate = this.renderCreate.bind(this);
-    var foo = this.state.posts
+    var foo = this.state.posts;
     return(
       <div className="Controller">
         <button> create. </button>
         <button> explore. </button>
         <Create words={this.props.quote} post={renderPost} reload={renderCreate}/>
-        {foo.map(function(post,i){
-          return(<Post value={post} key={i} />)
+        {foo.reverse().map(function(post,i){
+          return(<Post value={post} key={i} date={(new Date())}/>)
         })}
       </div>
     );
